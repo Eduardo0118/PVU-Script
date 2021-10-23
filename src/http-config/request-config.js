@@ -1,5 +1,6 @@
-export const url =
-  "https://backend-farm.plantvsundead.com/get-plants-filter-v2?sort=latest&offset=0&limit=5&type=1&elements=parasite";
+export const url = (element) => {
+  return `https://backend-farm.plantvsundead.com/get-plants-filter-v2?sort=latest&offset=0&limit=5&type=1&elements=${element}`;
+};
 
 export const config = {
   headers: {

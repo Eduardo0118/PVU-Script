@@ -13,7 +13,7 @@ const moveToBuyButtonFunc = () => {
   clickToBuyButton();
 };
 
-const moveToBuyButton = lodash.debounce(moveToBuyButtonFunc, 250);
+const moveToBuyButton = lodash.debounce(moveToBuyButtonFunc, 220);
 
 const scrollToBuyButtonFunc = () => {
   robot.scrollMouse(0, -180);
@@ -21,7 +21,7 @@ const scrollToBuyButtonFunc = () => {
   moveToBuyButton();
 };
 
-const scrollToBuyButton = lodash.debounce(scrollToBuyButtonFunc, 1800);
+const scrollToBuyButton = lodash.debounce(scrollToBuyButtonFunc, 1700);
 
 const moveToMetamaskFunc = () => {
   robot.mouseClick();
@@ -38,7 +38,7 @@ const buyFunc = () => {
   moveToMetamask();
 };
 
-const clickToBuy = lodash.debounce(buyFunc, 1500);
+const clickToBuy = lodash.debounce(buyFunc, 1400);
 
 export const BuyPlant = () => {
   robot.moveMouse(1490, 260);

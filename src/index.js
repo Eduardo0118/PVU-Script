@@ -12,13 +12,12 @@ app.listen(port, () => {
   console.log(`Script iniciado na porta ${port}`);
 });
 
-//x1490, y136
-
 let oldId;
+
 
 app.get("/", async (req, res) => {
   try {
-    const response = await fetch(url, config);
+    const response = await fetch(url("wind"), config);
     const json = await response.json();
     const { data } = json;
 
@@ -28,7 +27,7 @@ app.get("/", async (req, res) => {
     const lowestPriceId = lowestPrice.id;
     const price = lowestPrice.endingPrice;
 
-    if (price <= 8 && lowestPriceId !== oldId) {
+    if (price <= 12.5 && lowestPriceId !== oldId) {
       oldId = lowestPriceId;
 
       open(
@@ -37,7 +36,7 @@ app.get("/", async (req, res) => {
 
       BuyPlant();
     }
-
+    
     res.send({
       status: 200,
       message: "chegou o resultado",
@@ -50,6 +49,6 @@ app.get("/", async (req, res) => {
 
 setInterval(() => {
   fetch("http://localhost:3006");
-}, 200);
+}, 2000);
 
 export default app;
