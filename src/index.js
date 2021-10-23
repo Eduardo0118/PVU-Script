@@ -1,15 +1,20 @@
 import express from "express";
 import fetch from "node-fetch";
 import open from "open";
+import { BuyPlant } from "./actions/actions.js";
 
 import { config, url } from "./http-config/request-config.js";
 
 const app = express();
-const port = 3000;
+const port = 3006;
 
 app.listen(port, () => {
   console.log(`Script iniciado na porta ${port}`);
 });
+
+//x1490, y136
+
+let oldId;
 
 app.get("/", async (req, res) => {
   try {
@@ -23,14 +28,14 @@ app.get("/", async (req, res) => {
     const lowestPriceId = lowestPrice.id;
     const price = lowestPrice.endingPrice;
 
-    if (price <= 12 && lowestPriceId !== 1001610058) {
+    if (price <= 8 && lowestPriceId !== oldId) {
+      oldId = lowestPriceId;
+
       open(
         `https://marketplace.plantvsundead.com/farm#/plant/${lowestPriceId}`
       );
 
-      setTimeout(() => {
-        process.exit();
-      }, 100);
+      BuyPlant();
     }
 
     res.send({
@@ -44,7 +49,7 @@ app.get("/", async (req, res) => {
 });
 
 setInterval(() => {
-  fetch("http://localhost:3000");
+  fetch("http://localhost:3006");
 }, 200);
 
 export default app;
